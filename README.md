@@ -4,7 +4,8 @@ This repository contains code and practice files for **Web Technologies**, **DSB
 
 ## Table of Contents
 
-- [Web Technologies Lab](#web-technologies-lab)
+<!-- - [Web Technologies Lab](#web-technologies-lab) -->
+
 - [DSBDA Lab](#dsbda-lab)
 - [Lab Practice (Python)](#lab-practice-python)
 - [Creating a New Jupyter Notebook](#creating-a-new-jupyter-notebook)
@@ -13,7 +14,7 @@ This repository contains code and practice files for **Web Technologies**, **DSB
 
 ---
 
-## Web Technologies Lab
+<!-- ## Web Technologies Lab
 
 This section contains the exercises and code for **Web Technologies**. The code is implemented using **HTML, CSS, JavaScript**, and **Backend Technologies (Node.js, Flask)**.
 
@@ -44,7 +45,7 @@ This section contains the exercises and code for **Web Technologies**. The code 
 4. **Open the Project in the Browser**:
    - After running the above steps, open the browser and navigate to `http://localhost:3000` (for Node.js) or `http://127.0.0.1:5000` (for Flask).
 
----
+--- -->
 
 ## DSBDA Lab (Data Science and Business Data Analytics)
 
