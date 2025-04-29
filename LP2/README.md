@@ -32,7 +32,7 @@ This section contains Python-based lab practice exercises which are best run in 
 
 ---
 
-# 🔍 LP2 Python Programs – README
+# 🔍 LP2 Python Programs
 
 This README provides concise explanations for each Python program in the LP2 folder. Each script implements a key algorithm or data structure concept.
 
