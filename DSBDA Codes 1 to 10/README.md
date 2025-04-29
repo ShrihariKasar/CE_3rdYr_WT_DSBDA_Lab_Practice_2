@@ -1,8 +1,8 @@
 # Computer Engineering 3rd Year Lab Practicals
 
-This repository contains code and practice files for **Web Technologies**, **DSBDA (Data Science and Business Data Analytics)**, and **Lab Practice** in **Python**. These labs are designed for 3rd Year Computer Engineering students. The code and exercises are implemented in different environments like VS Code for Python and Jupyter Notebooks for DSBDA.
+This repository contains code and practice files for **Web Technologies**, **DSBDA (Data Science and Big Data Analytics)**, and **Lab Practice** in **Python**. These labs are designed for 3rd Year Computer Engineering students. The code and exercises are implemented in different environments like VS Code for Python and Jupyter Notebooks for DSBDA.
 
-## DSBDA Lab (Data Science and Business Data Analytics)
+## DSBDA Lab (Data Science and Big Data Analytics)
 
 This section contains the **DSBDA** lab exercises implemented in **Jupyter Notebook**.
 
