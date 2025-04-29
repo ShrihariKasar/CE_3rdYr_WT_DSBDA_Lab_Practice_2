@@ -92,8 +92,6 @@ To read a **CSV** file in Jupyter Notebook:
 
 ---
 
-# 📁 DSBDA Codes 1 to 10 – README
-
 ## ✅ 1st.ipynb – Iris Dataset EDA
 
 ### 📝 Objective
