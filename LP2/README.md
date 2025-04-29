@@ -2,75 +2,6 @@
 
 This repository contains code and practice files for **Web Technologies**, **DSBDA (Data Science and Business Data Analytics)**, and **Lab Practice** in **Python**. These labs are designed for 3rd Year Computer Engineering students. The code and exercises are implemented in different environments like VS Code for Python and Jupyter Notebooks for DSBDA.
 
-## Table of Contents
-
-- [Web Technologies Lab](#web-technologies-lab)
-- [DSBDA Lab](#dsbda-lab)
-- [Lab Practice (Python)](#lab-practice-python)
-- [Creating a New Jupyter Notebook](#creating-a-new-jupyter-notebook)
-- [Uploading Files to Jupyter Notebook](#uploading-files-to-jupyter-notebook)
-- [Reading a CSV File in Jupyter Notebook](#reading-a-csv-file-in-jupyter-notebook)
-
----
-
-## Web Technologies Lab
-
-This section contains the exercises and code for **Web Technologies**. The code is implemented using **HTML, CSS, JavaScript**, and **Backend Technologies (Node.js, Flask)**.
-
-### How to Run the Web Technologies Code
-
-1. **Install Dependencies**:
-   - Make sure you have **Node.js** installed on your system. You can download it from [here](https://nodejs.org/).
-   - For Flask-based projects, you need to install **Flask** using pip. Run the following command:
-     ```bash
-     pip install Flask
-     ```
-   
-2. **Run the Node.js Code (if applicable)**:
-   - Navigate to the folder where the project is located and run:
-     ```bash
-     npm install
-     npm start
-     ```
-   - This will start the backend server, usually on `http://localhost:3000` or a similar port.
-
-3. **Run the Flask Code (if applicable)**:
-   - Navigate to the Flask project folder and start the application with the following command:
-     ```bash
-     flask run
-     ```
-   - This will start the Flask development server, usually on `http://127.0.0.1:5000`.
-
-4. **Open the Project in the Browser**:
-   - After running the above steps, open the browser and navigate to `http://localhost:3000` (for Node.js) or `http://127.0.0.1:5000` (for Flask).
-
----
-
-## DSBDA Lab (Data Science and Business Data Analytics)
-
-This section contains the **DSBDA** lab exercises implemented in **Jupyter Notebook**.
-
-### How to Run the DSBDA Code
-
-1. **Install Jupyter Notebook**:
-   - First, install **Jupyter Notebook** using pip if it's not already installed:
-     ```bash
-     pip install notebook
-     ```
-
-2. **Open the Jupyter Notebook**:
-   - Navigate to the folder where the Jupyter Notebook file is located and run the following command:
-     ```bash
-     jupyter notebook
-     ```
-   - This will open the Jupyter Notebook interface in your browser, usually at `http://localhost:8888`.
-
-3. **Run the Notebook**:
-   - Open the desired `.ipynb` file from the Jupyter interface.
-   - Execute the cells step by step using the **Shift + Enter** command.
-
----
-
 ## Lab Practice (Python)
 
 This section contains Python-based lab practice exercises which are best run in **VS Code**.
@@ -101,71 +32,89 @@ This section contains Python-based lab practice exercises which are best run in 
 
 ---
 
-## Creating a New Jupyter Notebook
+# 🔍 LP2 Python Programs – README
 
-To create a new Jupyter Notebook:
-
-1. **Launch Jupyter Notebook**:
-   - Open a terminal or command prompt and navigate to the directory where you want to create the new notebook.
-
-2. **Create a New Notebook**:
-   - Type the following command to launch Jupyter Notebook:
-     ```bash
-     jupyter notebook
-     ```
-   - This will open Jupyter in your default web browser.
-   - In the Jupyter interface, click on **New** > **Python 3** to create a new notebook.
-
-3. **Save the Notebook**:
-   - Once the notebook is open, you can start writing and running Python code. Save your notebook regularly using **File** > **Save and Checkpoint**.
+This README provides concise explanations for each Python program in the LP2 folder. Each script implements a key algorithm or data structure concept.
 
 ---
 
-## Uploading Files to Jupyter Notebook
+## ✅ `1stbfs.py` – Breadth-First Search (BFS)
 
-To upload a file to Jupyter Notebook:
+### 🔧 Description:
+Implements BFS traversal for a user-defined graph using a queue and recursion.
 
-1. **Open Jupyter Notebook**:
-   - Launch Jupyter Notebook in the desired directory (as mentioned above).
-
-2. **Upload a File**:
-   - In the Jupyter interface, click on the **Upload** button on the right side of the screen.
-   - Select the file you wish to upload from your computer and click **Open**.
-   - After the upload is complete, the file will appear in your Jupyter Notebook interface.
+### 💡 Key Concepts:
+- Uses `deque` from `collections` for queue implementation.
+- Accepts graph edges and start node from the user.
+- Tracks visited nodes to avoid cycles.
 
 ---
 
-## Reading a CSV File in Jupyter Notebook
+## ✅ `1stdfs.py` – Depth-First Search (DFS)
 
-To read a **CSV** file in Jupyter Notebook:
+### 🔧 Description:
+Performs DFS traversal recursively on a user-input graph.
 
-1. **Install Pandas** (if not already installed):
-   - If you don’t have **pandas** installed, run the following command:
-     ```bash
-     pip install pandas
-     ```
-
-2. **Import Pandas**:
-   - Add the following import statement to your notebook:
-     ```python
-     import pandas as pd
-     ```
-
-3. **Read the CSV File**:
-   - Use the `pd.read_csv()` function to read the CSV file:
-     ```python
-     df = pd.read_csv('path/to/your/file.csv')
-     ```
-
-4. **Display the Data**:
-   - To view the first few rows of the CSV file, use:
-     ```python
-     df.head()
-     ```
-
-   - Make sure the path you provide to `read_csv()` is correct. If the file is in the same directory as the notebook, simply use `'filename.csv'`. If it’s in a different folder, provide the relative or absolute path, e.g., `'data/myfile.csv'`.
+### 💡 Key Concepts:
+- User builds the graph via input.
+- DFS is implemented using recursion.
+- Visited nodes tracked using a set.
 
 ---
+
+## ✅ `2nd.py` – Dijkstra’s Algorithm
+
+### 🔧 Description:
+Finds the shortest path from a source vertex to all others using Dijkstra’s algorithm.
+
+### 💡 Key Concepts:
+- Uses a dictionary to store distances.
+- Selects the unvisited vertex with the smallest tentative distance.
+- Updates neighboring vertex distances.
+
+---
+
+## ✅ `3rd.py` – Kruskal’s Algorithm
+
+### 🔧 Description:
+Implements Kruskal’s algorithm to find the Minimum Spanning Tree (MST) of a graph.
+
+### 💡 Key Concepts:
+- Uses disjoint-set (union-find) for cycle detection.
+- Edges sorted by weight.
+- MST constructed by adding edges that don't form a cycle.
+
+---
+
+## ✅ `4th.py` – N-Queens Problem (Backtracking)
+
+### 🔧 Description:
+Solves the N-Queens problem using backtracking.
+
+### 💡 Key Concepts:
+- Places queens row by row ensuring no conflicts (same column/diagonal).
+- Recursively attempts valid placements.
+- Outputs all possible board configurations.
+
+---
+
+## ✅ `5th.py` – Fractional Knapsack Problem
+
+### 🔧 Description:
+Solves the fractional knapsack problem using a greedy approach.
+
+### 💡 Key Concepts:
+- Items sorted based on value/weight ratio.
+- Takes full or fractional part of the most valuable item until the knapsack is full.
+- Maximizes total value.
+
+---
+
+## 📁 Upcoming Scripts in:
+- `6th/`, `7th/`, `8th/`, `9th/`: These directories contain Clound Computing Practicals
+
+---
+
 
 ## Contributing
 
