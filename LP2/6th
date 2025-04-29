@@ -1,0 +1,136 @@
+
+## ☁️ **What is Amazon EC2?**
+
+**Amazon EC2 (Elastic Compute Cloud)** is a web service by AWS that provides **resizable compute capacity in the cloud**. It lets you launch virtual servers (called **instances**) that run on Amazon's infrastructure.
+
+---
+
+## ✅ **Key EC2 Features**
+
+- Run virtual machines on-demand
+- Choose OS: Linux, Windows, Ubuntu, etc.
+- Choose instance type: CPU/RAM optimized
+- Pay-as-you-go pricing
+- Connect using SSH or RDP
+- Security with firewalls (security groups)
+
+---
+
+## ✅ **How to Create and Manage an EC2 Instance**
+
+### 🔹 **Step 1: Sign in to AWS**
+
+- Go to [https://aws.amazon.com](https://aws.amazon.com)
+- Sign in or create a **free-tier account** (credit card required, but free tier is free for 12 months)
+
+---
+
+### 🔹 **Step 2: Open EC2 Dashboard**
+
+- After logging in:
+  - Go to **Services** > **EC2**
+  - This opens the EC2 Dashboard
+
+---
+
+### 🔹 **Step 3: Launch a New EC2 Instance**
+
+1. Click **“Launch Instance”**
+2. **Name your instance** (e.g., MyUbuntuServer)
+3. **Choose an Amazon Machine Image (AMI)**:
+   - Free tier: Choose **Ubuntu Server 22.04 LTS** or **Amazon Linux 2**
+4. **Choose an Instance Type**:
+   - Free tier: Select `t2.micro` (1 vCPU, 1GB RAM)
+5. **Key Pair (Login Method)**:
+   - Create a new key pair
+   - Download the `.pem` file — required for SSH login
+6. **Configure Network Settings**:
+   - Auto-selected VPC and subnet
+   - Allow SSH (port 22) if Linux, RDP (port 3389) if Windows
+7. **Storage**:
+   - Default: 8GB EBS (Amazon Elastic Block Storage)
+8. Click **“Launch Instance”**
+
+---
+
+### 🔹 **Step 4: Connect to Your Instance**
+
+#### For Linux/Ubuntu:
+Use terminal or Git Bash (on Windows):
+```bash
+chmod 400 your-key.pem
+ssh -i "your-key.pem" ubuntu@<public-ip>
+```
+
+#### For Windows:
+- Use **PuTTY** or **Remote Desktop (RDP)** with username and password
+
+---
+
+## 🔄 **Instance Management**
+
+### 🔹 **Start an EC2 Instance**
+
+- Go to **Instances**
+- Select the stopped instance
+- Click **Actions > Instance State > Start**
+
+---
+
+### 🔹 **Stop an EC2 Instance**
+
+- Select the running instance
+- Click **Actions > Instance State > Stop**
+
+> ⚠️ EBS volumes are preserved. Instance is not billed when stopped.
+
+---
+
+### 🔹 **Restart (Reboot) an EC2 Instance**
+
+- Select the instance
+- Click **Actions > Instance State > Reboot**
+
+---
+
+### 🔹 **Terminate an EC2 Instance**
+
+- Select the instance
+- Click **Actions > Instance State > Terminate**
+- ⚠️ This deletes the instance and associated data unless backup is made.
+
+---
+
+## 📦 **Additional EC2 Tips**
+
+| Feature | Description |
+|--------|-------------|
+| **Elastic IP** | Assign a static IP to your instance |
+| **Security Groups** | Like a firewall; control access (e.g., SSH, HTTP) |
+| **User Data** | Run startup scripts (e.g., install Apache) |
+| **Snapshots** | Backup volumes (EBS) |
+| **Auto Scaling** | Automatically scale resources based on load |
+
+---
+
+## 🧪 **Example Use Cases**
+
+- Host a website using Apache/Nginx
+- Run Python, Node.js, Java apps
+- Practice Linux commands
+- Setup cloud-based database or game server
+
+---
+
+## ✅ Summary of EC2 Operations
+
+| Operation | How To |
+|----------|--------|
+| **Create Instance** | EC2 Dashboard → Launch Instance |
+| **Connect** | SSH (Linux) or RDP (Windows) |
+| **Start** | Actions → Instance State → Start |
+| **Stop** | Actions → Instance State → Stop |
+| **Reboot** | Actions → Instance State → Reboot |
+| **Terminate** | Actions → Instance State → Terminate |
+
+---

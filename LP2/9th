@@ -1,0 +1,154 @@
+
+## ☁️ **What is Salesforce Cloud?**
+
+**Salesforce Cloud** is a platform to build custom apps without managing infrastructure. Using tools like **Lightning App Builder**, **Object Manager**, and **Apex**, you can create full-featured business applications directly on the cloud.
+
+---
+
+## ✅ **Objective**
+
+**Design and develop a custom application using Salesforce Cloud** that includes:
+
+- Custom objects & fields
+- Custom app interface (tabs/pages)
+- Data entry & reports
+- Optional: Business logic using Apex
+
+We'll create a **Student Management App** for demonstration.
+
+---
+
+## 🔧 Step-by-Step Guide to Building a Custom App in Salesforce
+
+---
+
+### 🔹 Step 1: Setup Salesforce Developer Org
+
+1. Go to [https://developer.salesforce.com/signup](https://developer.salesforce.com/signup)
+2. Fill in the form and verify your email
+3. Log in to your Salesforce Org from [https://login.salesforce.com](https://login.salesforce.com)
+
+---
+
+### 🔹 Step 2: Create a Custom App
+
+1. In **Setup**, search for **App Manager**
+2. Click **New Lightning App**
+3. Fill:
+   - App Name: `StudentManager`
+   - Developer Name: Auto-filled
+4. Choose:
+   - Navigation style: **Standard**
+   - Add utility bar if needed
+5. Add navigation items:
+   - Custom Object: `Students`
+   - Standard items: Reports, Dashboards, etc.
+6. Assign to relevant user profiles (check “System Administrator”)
+7. Click **Save & Finish**
+
+---
+
+### 🔹 Step 3: Create a Custom Object
+
+1. Go to **Object Manager > Create > Custom Object**
+2. Enter:
+   - Label: `Student`
+   - Plural: `Students`
+   - Object Name: `Student__c`
+   - Enable: *Allow Reports*, *Track Field History*
+3. Click **Save**
+
+---
+
+### 🔹 Step 4: Add Custom Fields
+
+1. In the Student Object, click **Fields & Relationships > New**
+2. Create fields like:
+   - `Roll_Number__c` (Number)
+   - `Department__c` (Picklist)
+   - `Joining_Date__c` (Date)
+   - `Phone__c` (Phone)
+   - `Email__c` (Email)
+
+---
+
+### 🔹 Step 5: Create Tabs and Add to App
+
+1. In Setup, search for **Tabs**
+2. Click **New Custom Object Tab**
+   - Object: `Student`
+   - Tab Style: Pick any icon
+   - Click **Next** and **Save**
+3. Add the new tab to the StudentManager app via App Settings
+
+---
+
+### 🔹 Step 6: Create Records (Test Data)
+
+1. Open App Launcher → Search for **StudentManager**
+2. Click on **Students Tab**
+3. Use **New** to add records like:
+   - Name: *Shrihari Kasar*
+   - Roll No: 101
+   - Department: *Computer Science*
+   - Joining Date: *2023-07-01*
+
+---
+
+### 🔹 Step 7: (Optional) Add Business Logic using Apex
+
+1. Go to **Developer Console**
+2. Create a class:
+```apex
+public class StudentHelper {
+    public static void assignDefaultDept(Student__c[] students) {
+        for(Student__c s : students) {
+            if(s.Department__c == null) {
+                s.Department__c = 'General';
+            }
+        }
+    }
+}
+```
+
+3. Add a **Trigger** on Student object:
+```apex
+trigger DefaultDeptTrigger on Student__c (before insert) {
+    StudentHelper.assignDefaultDept(Trigger.new);
+}
+```
+
+---
+
+### 🔹 Step 8: Create a Report or Dashboard
+
+1. Go to **Reports > New Report**
+2. Choose type: `Students`
+3. Drag fields like Name, Roll Number, Department
+4. Save & run the report
+
+---
+
+## 🎓 Summary of Components
+
+| Component | Description |
+|----------|-------------|
+| App Name | StudentManager |
+| Object | Student__c |
+| Fields | Roll Number, Dept, Joining Date, etc. |
+| Tab | Students |
+| Apex | Class and Trigger for default dept |
+| Report | Student list report |
+
+---
+
+## ✅ Application Features
+
+- Add, view, and manage student data
+- Auto-assign department if missing (Apex logic)
+- Tab-based UI navigation
+- Reports for data analysis
+
+---
+
+Shrihari Kasar!

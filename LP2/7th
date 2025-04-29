@@ -1,0 +1,142 @@
+
+## ✅ Part A: Enable Virtualization Through BIOS
+
+### 🔹 Step 1: Reboot Your System
+
+- As soon as the system begins to restart, **press the BIOS key** repeatedly.
+  - Common keys: `F2`, `F10`, `F12`, `DEL`, or `ESC` (depends on manufacturer).
+
+### 🔹 Step 2: Enter BIOS/UEFI Settings
+
+- Navigate using keyboard arrows to **Advanced**, **CPU Configuration**, or **Security** tab.
+
+### 🔹 Step 3: Enable Virtualization
+
+- Find a setting named:
+  - `Intel VT-x` or `Intel Virtualization Technology` (for Intel)
+  - `SVM Mode` (for AMD)
+- Set it to **Enabled**.
+
+### 🔹 Step 4: Save and Exit BIOS
+
+- Press `F10` to Save and Exit.
+- The system will reboot.
+
+---
+
+## ✅ Part B: Download Required Software
+
+### 🔹 Step 1: Download Ubuntu ISO
+
+- Go to: [https://ubuntu.com/download/desktop](https://ubuntu.com/download/desktop)
+- Download the latest **Ubuntu Desktop ISO** (e.g., `ubuntu-22.04.3-desktop-amd64.iso`).
+
+### 🔹 Step 2: Download VMware Workstation Player
+
+- Go to: [https://www.vmware.com/products/workstation-player.html](https://www.vmware.com/products/workstation-player.html)
+- Download and install **VMware Workstation Player** (Free for personal use).
+
+---
+
+## ✅ Part C: Install Ubuntu on VMware
+
+### 🔹 Step 1: Open VMware Workstation Player
+
+- Launch VMware from the Start menu.
+
+### 🔹 Step 2: Create a New Virtual Machine
+
+- Click **"Create a New Virtual Machine"**.
+- Choose:
+  - **Installer disc image file (ISO)**.
+  - Browse and select your downloaded `ubuntu-xx.iso` file.
+- Click **Next**.
+
+### 🔹 Step 3: Name and Location
+
+- Give your VM a name like `Ubuntu_VM`.
+- Choose a location on your disk to store the VM files.
+
+### 🔹 Step 4: Specify Disk Capacity
+
+- Suggested:
+  - Minimum: **20 GB**
+  - Select: **Store virtual disk as a single file**.
+
+### 🔹 Step 5: Customize Hardware
+
+Click **"Customize Hardware"** and set:
+
+- **Memory (RAM)**: Minimum 2048 MB (2 GB), Recommended 4096 MB (4 GB)
+- **Processors**: At least 2 cores
+- **Network Adapter**: Use NAT or Bridged (based on your need)
+
+Then click **Close** and **Finish**.
+
+---
+
+## ✅ Part D: Install Ubuntu OS
+
+### 🔹 Step 1: Start the VM
+
+- Click **"Play virtual machine"**.
+
+### 🔹 Step 2: Begin Installation
+
+- Choose **“Try or Install Ubuntu”**.
+- Click **“Install Ubuntu”**.
+
+### 🔹 Step 3: Setup Installation
+
+- **Keyboard Layout**: Select your layout or leave as default.
+- **Updates and Other Software**:
+  - Choose: **Normal installation**
+  - Check boxes for updates and third-party software (optional)
+
+### 🔹 Step 4: Disk Setup
+
+- Select **Erase disk and install Ubuntu** *(only applies to the virtual disk)*.
+- Click **Install Now** and then **Continue**.
+
+### 🔹 Step 5: User Info
+
+- Select your **time zone**.
+- Set:
+  - Your name
+  - Computer name
+  - Username and password
+
+Click **Continue**.
+
+---
+
+### 🔹 Step 6: Wait for Installation to Complete
+
+- Once done, you’ll be prompted to **restart**.
+- Press **Enter** when asked to remove installation media (it auto-detects inside VMware).
+
+---
+
+## ✅ Post Installation Tasks
+
+### 🔹 Step 1: Install VMware Tools
+
+- Click **Player > Manage > Install VMware Tools**.
+- This helps in better screen resolution, drag-drop, and clipboard sharing.
+
+### 🔹 Step 2: Update Ubuntu
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+## 🎉 Congratulations!
+
+You have successfully:
+- Enabled virtualization via BIOS
+- Installed Ubuntu on VMware
+- Customized and booted into your new virtual Linux system
+
+---
