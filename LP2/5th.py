@@ -1,76 +1,42 @@
-import re
-from difflib import get_close_matches
+from rapidfuzz import process
 
-# List of common words for spell correction
-common_words = ["hello", "how", "are", "you", "your", "name", "is", "I", "am", "fine", "thank", "good", "bye", "thanks", "please", "sorry"]
+def chatbot():
+    responses = {
+        "hello": "Hello! How can I assist you today?",
+        "hi": "Hi there! What can I help you with?",
+        "how are you": "I'm just a bot, but I'm doing great! Thanks!",
+        "store hours": "Our store is open from 9 AM to 9 PM, Monday to Saturday.",
+        "order status": "Please provide your order ID to track your order.",
+        "return policy": "You can return most items within 30 days of purchase.",
+        "bye": "Thank you for chatting with us. Have a great day!",
+        "thanks": "You're welcome! Is there anything else I can help with?",
+        "thank you": "You're welcome! Let me know if you have any more questions."
+    }
 
-def correct_spelling(input_text):
-    words = input_text.split()
-    corrected_words = []
-    for word in words:
-        # Find the closest match for each word in the common_words list
-        corrected_word = get_close_matches(word, common_words, n=1)
-        if corrected_word:
-            corrected_words.append(corrected_word[0])
-        else:
-            corrected_words.append(word)
-    return ' '.join(corrected_words)
-
-def handle_message(message):
-    # Convert to lowercase to make comparison case-insensitive
-    message = message.lower()
-    
-    # Check for specific phrases
-    if "hello" in message or "hi" in message:
-        return "Hi, how can I assist you today?"
-    
-    elif "how are you" in message:
-        return "I'm doing great, thank you! How can I help you?"
-    
-    elif "your name" in message or "who are you" in message:
-        return f"My name is MatoshriGPT, but you can call me 'Matoshri' for short. What can I do for you, Shrihari Kasar?"
-    
-    elif "thank you" in message or "thanks" in message:
-        return "You're welcome! Let me know if you need anything else."
-    
-    elif "bye" in message:
-        return "Goodbye, Shrihari! Have a great day!"
-    
-    else:
-        return "I'm sorry, I didn't quite understand that. Could you please rephrase?"
-
-def main():
-    print("Hello! I'm your assistant chatbot. You can talk to me about anything. Type 'bye' to exit.")
+    print("🛍️ Welcome to ShopBot! Type 'bye' to exit.")
     while True:
-        user_message = input("You: ")
-        corrected_message = correct_spelling(user_message)
-        print(f"Corrected message: {corrected_message}")
-        
-        response = handle_message(corrected_message)
-        print(f"Bot: {response}")
-        
-        if "bye" in corrected_message:
+        user_input = input("You: ").lower()
+
+        # Match the input to the closest key
+        best_match, score, _ = process.extractOne(user_input, responses.keys())
+
+        # Define a minimum confidence score (e.g., 60%)
+        response = responses.get(best_match) if score > 60 else "I'm sorry, I didn't understand that clearly. Could you rephrase?"
+
+        print("Bot:", response)
+
+        if best_match == "bye":
             break
 
-if __name__ == "__main__":
-    main()
+chatbot()
 
-
+# make changes in Qs and ans
 # PS C:\Users\Asus\OneDrive\Desktop\LP2> python 5th.py
-# Hello! I'm your assistant chatbot. You can talk to me about anything. Type 'bye' to exit.
-# You: hello
-# Corrected message: hello
-# Bot: Hi, how can I assist you today?
-# You: hii
-# Corrected message: hii
-# Bot: Hi, how can I assist you today?
-# You: how are you doing
-# Corrected message: how are you doing
-# Bot: I'm doing great, thank you! How can I help you?
-# You: how are you      
-# Corrected message: how are you
-# Bot: I'm doing great, thank you! How can I help you?
-# You: bye
-# Corrected message: bye
-# Bot: Goodbye, Shrihari! Have a great day!
-# PS C:\Users\Asus\OneDrive\Desktop\LP2> 
+# 🛍️ Welcome to ShopBot! Type 'bye' to exit.
+# You: hello            
+# Bot: Hello! How can I assist you today?
+# You: order            
+# Bot: Please provide your order ID to track your order.
+# You: where is my order
+# Bot: I'm sorry, I didn't understand that clearly. Could you rephrase?
+# You:
