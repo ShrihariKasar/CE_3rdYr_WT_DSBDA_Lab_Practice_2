@@ -74,17 +74,9 @@ Finds the shortest path from a source vertex to all others using Dijkstra’s al
 
 ---
 
-## ✅ `3rd.py` – Kruskal’s Algorithm
+## ✅ `3rd.py` – Implement Greedy search algorithm for Job Scheduling Problem application
 
-### 🔧 Description:
-Implements Kruskal’s algorithm to find the Minimum Spanning Tree (MST) of a graph.
 
-### 💡 Key Concepts:
-- Uses disjoint-set (union-find) for cycle detection.
-- Edges sorted by weight.
-- MST constructed by adding edges that don't form a cycle.
-
----
 
 ## ✅ `4th.py` – N-Queens Problem (Backtracking)
 
