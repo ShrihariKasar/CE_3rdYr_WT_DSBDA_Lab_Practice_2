@@ -1,92 +1,171 @@
 import copy
-from queue import PriorityQueue
-
-def is_winner(board, player):
-    return any([
-        all([cell == player for cell in row]) for row in board
-    ]) or any([
-        all([board[r][c] == player for r in range(3)]) for c in range(3)
-    ]) or all([
-        board[i][i] == player for i in range(3)
-    ]) or all([
-        board[i][2 - i] == player for i in range(3)
-    ])
-
-def heuristic(board, player):
-    return sum(row.count(player) for row in board)
-
-def get_possible_moves(board):
-    return [(i, j) for i in range(3) for j in range(3) if board[i][j] == ' ']
-
-def make_move(board, i, j, player):
-    new_board = copy.deepcopy(board)
-    new_board[i][j] = player
-    return new_board
 
 def print_board(board):
     for row in board:
-        print(' '.join(row))
-    print()
+        print(" | ".join(row))
+        print("-" * 5)
 
-def get_clean_board():
-    board = []
-    print("Enter the board row by row using X, O, or E (for empty cells). Example: 'XOE' or 'XO E'")
+def check_winner(board, player):
     for i in range(3):
-        while True:
-            row = input(f"Row {i + 1}: ").strip().upper().replace(' ', '')
-            if len(row) == 3 and all(c in ['X', 'O', 'E'] for c in row):
-                board.append([' ' if c == 'E' else c for c in row])
-                break
-            else:
-                print("❌ Please enter exactly 3 characters using X, O, or E only (e.g., 'XOE').")
-    return board
+        if all([cell == player for cell in board[i]]): return True
+        if all([board[j][i] == player for j in range(3)]): return True
+    if all([board[i][i] == player for i in range(3)]): return True
+    if all([board[i][2 - i] == player for i in range(3)]): return True
+    return False
 
-def a_star_tictactoe(start_board, player):
-    queue = PriorityQueue()
-    queue.put((0, start_board))
+def is_full(board):
+    return all(cell != ' ' for row in board for cell in row)
 
-    while not queue.empty():
-        _, current = queue.get()
+def get_empty_positions(board):
+    return [(i, j) for i in range(3) for j in range(3) if board[i][j] == ' ']
 
-        if is_winner(current, player):
-            return current
+def heuristic(board, player):
+    if check_winner(board, 'O'):
+        return 10
+    elif check_winner(board, 'X'):
+        return -10
+    else:
+        return 0
 
-        for i, j in get_possible_moves(current):
-            next_board = make_move(current, i, j, player)
-            score = heuristic(next_board, player)
-            queue.put((-score, next_board))  # maximize score
+def a_star_move(board):
+    best_score = float('-inf')
+    best_move = None
+    for move in get_empty_positions(board):
+        new_board = copy.deepcopy(board)
+        new_board[move[0]][move[1]] = 'O'
+        score = heuristic(new_board, 'O')
+        if score == 0:  # Evaluate future potential
+            score -= distance_to_win(new_board, 'O')
+        if score > best_score:
+            best_score = score
+            best_move = move
+    return best_move
 
-    return None
+def distance_to_win(board, player):
+    # Lower is better
+    dist = 0
+    for i in range(3):
+        row = [board[i][j] for j in range(3)]
+        col = [board[j][i] for j in range(3)]
+        dist += (3 - row.count(player) - row.count('X' if player == 'O' else 'O'))
+        dist += (3 - col.count(player) - col.count('X' if player == 'O' else 'O'))
+    return dist
 
-# Main
-board = get_clean_board()
-result = a_star_tictactoe(board, 'X')
-print("\nBest possible board where 'X' might win:")
-if result:
-    print_board(result)
-else:
-    print("No winning path found for X.")
+def main():
+    board = [[' ' for _ in range(3)] for _ in range(3)]
+    print("Tic Tac Toe - You are X, Computer is O")
+    print_board(board)
+
+    while True:
+        row = int(input("Enter your row (0-2): "))
+        col = int(input("Enter your column (0-2): "))
+        if board[row][col] != ' ':
+            print("Invalid move! Try again.")
+            continue
+        board[row][col] = 'X'
+        print_board(board)
+
+        if check_winner(board, 'X'):
+            print("You win!")
+            break
+        if is_full(board):
+            print("It's a draw!")
+            break
+
+        print("Computer's move:")
+        move = a_star_move(board)
+        if move:
+            board[move[0]][move[1]] = 'O'
+        print_board(board)
+
+        if check_winner(board, 'O'):
+            print("Computer wins!")
+            break
+        if is_full(board):
+            print("It's a draw!")
+            break
+
+if __name__ == "__main__":
+    main()
 
 
-
-
-# PS C:\Users\Asus\OneDrive\Desktop\LP2> python 2nd.py
-# Enter the board row by row using X, O, or E (for empty cells). Example: 'XOE' or 'XO E'
-# Row 1: xoe
-# Row 2: oxe
-# Row 3: eoe
-
-# Best possible board where 'X' might win:
-# X O
-# O X
-#   O X
-
-# PS C:\Users\Asus\OneDrive\Desktop\LP2> python 2nd.py
-# Enter the board row by row using X, O, or E (for empty cells). Example: 'XOE' or 'XO E'
-# Row 1: xox
-# Row 2: oox
-# Row 3: xoo
-
-# Best possible board where 'X' might win:
-# No winning path found for X.
-# PS C:\Users\Asus\OneDrive\Desktop\LP2>
+# OUTPUT:
+    
+#     PS C:\Users\Asus\OneDrive\Desktop\LP2> python 2nd.py
+# Tic Tac Toe - You are X, Computer is O
+#   |   |  
+# -----
+#   |   |  
+# -----
+#   |   |  
+# -----
+# Enter your row (0-2): 0
+# Enter your column (0-2): 0
+# X |   |  
+# -----
+#   |   |
+# -----
+#   |   |
+# -----
+# Computer's move:
+# X | O |
+# -----
+#   |   |
+# -----
+#   |   |
+# -----
+# Enter your row (0-2): 2
+# Enter your column (0-2): 1
+# X | O |  
+# -----
+#   |   |
+# -----
+#   | X |
+# -----
+# Computer's move:
+# X | O | O
+# -----
+#   |   |
+# -----
+#   | X |
+# -----
+# Enter your row (0-2): 1
+# Enter your column (0-2): 1
+# X | O | O
+# -----
+#   | X |
+# -----
+#   | X |
+# -----
+# Computer's move:
+# X | O | O
+# -----
+# O | X |
+# -----
+#   | X |
+# -----
+# Enter your row (0-2): 2
+# Enter your column (0-2): 0
+# X | O | O
+# -----
+# O | X |
+# -----
+# X | X |
+# -----
+# Computer's move:
+# X | O | O
+# -----
+# O | X | O
+# -----
+# X | X |
+# -----
+# Enter your row (0-2): 2
+# Enter your column (0-2): 2
+# X | O | O
+# -----
+# O | X | O
+# -----
+# X | X | X
+# -----
+# You win!
+# PS C:\Users\Asus\OneDrive\Desktop\LP2> 
