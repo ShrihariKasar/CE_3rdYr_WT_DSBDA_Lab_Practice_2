@@ -62,15 +62,7 @@ Performs DFS traversal recursively on a user-input graph.
 
 ---
 
-## ✅ `2nd.py` – Dijkstra’s Algorithm
-
-### 🔧 Description:
-Finds the shortest path from a source vertex to all others using Dijkstra’s algorithm.
-
-### 💡 Key Concepts:
-- Uses a dictionary to store distances.
-- Selects the unvisited vertex with the smallest tentative distance.
-- Updates neighboring vertex distances.
+## ✅ `2nd.py` – Tic-Tac-Toe A* heuristic-based game
 
 ---
 
